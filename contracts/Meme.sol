@@ -37,7 +37,7 @@ contract Meme is ERC20 {
     //address constant weth = 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270; // Polygon wMatic
     uint supply = 1_000_000 * 10 ** decimals();
     uint24 constant fee = 500;
-    uint160 constant sqrtPriceX96 = 79224253767016489810214999; // ~ 1:1
+    uint160 constant sqrtPriceX96 = 79228162514264337593543950336; // ~ 1:1
     int24 minTick;
     int24 maxTick;
     address public pool;
@@ -47,13 +47,13 @@ contract Meme is ERC20 {
     uint amount1Desired;
     
     constructor() ERC20("Meme Token", "MEME") {
-        _mint(address(), supply);
+        _mint(address(this), supply);
         fixOrdering();
         pool = posMan.createAndInitializePoolIfNecessary(token0, token1, fee, sqrtPriceX96);
     }
 
     function addLiquidity() public {
-        IERC20(address()).approve(address(posMan), supply);
+        IERC20(address(this)).approve(address(posMan), supply);
         posMan.mint(INonfungiblePositionManager.MintParams({
             token0: token0,
             token1: token1,
@@ -64,14 +64,14 @@ contract Meme is ERC20 {
             amount1Desired: amount1Desired,
             amount0Min: 0,
             amount1Min: 0,
-            recipient: address(),
+            recipient: address(this),
             deadline: block.timestamp + 1200
         }));
     }
 
     function fixOrdering() private {
-        if (address() < weth) {
-            token0 = address();
+        if (address(this) < weth) {
+            token0 = address(this);
             token1 = weth;
             amount0Desired = supply;
             amount1Desired = 0;
@@ -79,7 +79,7 @@ contract Meme is ERC20 {
             maxTick = 887270;
         } else {
             token0 = weth;
-            token1 = address();
+            token1 = address(this);
             amount0Desired = 0;
             amount1Desired = supply;
             minTick = -887270;
