@@ -47,13 +47,13 @@ contract Meme is ERC20 {
     uint amount1Desired;
     
     constructor() ERC20("Meme Token", "MEME") {
-        _mint(address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB), supply);
+        _mint(address(), supply);
         fixOrdering();
         pool = posMan.createAndInitializePoolIfNecessary(token0, token1, fee, sqrtPriceX96);
     }
 
     function addLiquidity() public {
-        IERC20(address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB)).approve(address(posMan), supply);
+        IERC20(address()).approve(address(posMan), supply);
         posMan.mint(INonfungiblePositionManager.MintParams({
             token0: token0,
             token1: token1,
@@ -64,14 +64,14 @@ contract Meme is ERC20 {
             amount1Desired: amount1Desired,
             amount0Min: 0,
             amount1Min: 0,
-            recipient: address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB),
+            recipient: address(),
             deadline: block.timestamp + 1200
         }));
     }
 
     function fixOrdering() private {
-        if (address(0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889) < weth) {
-            token0 = address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB);
+        if (address() < weth) {
+            token0 = address();
             token1 = weth;
             amount0Desired = supply;
             amount1Desired = 0;
@@ -79,7 +79,7 @@ contract Meme is ERC20 {
             maxTick = 887270;
         } else {
             token0 = weth;
-            token1 = address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB);
+            token1 = address();
             amount0Desired = 0;
             amount1Desired = supply;
             minTick = -887270;
