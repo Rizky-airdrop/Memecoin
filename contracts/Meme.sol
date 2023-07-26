@@ -37,7 +37,7 @@ contract Meme is ERC20 {
     //address constant weth = 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270; // Polygon wMatic
     uint supply = 1_000_000 * 10 ** decimals();
     uint24 constant fee = 500;
-    uint160 constant sqrtPriceX96 = 79228162514264337593543950336; // ~ 1:1
+    uint160 constant sqrtPriceX96 = 79224253767016489810214999; // ~ 1:1
     int24 minTick;
     int24 maxTick;
     address public pool;
