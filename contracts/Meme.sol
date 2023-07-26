@@ -70,7 +70,7 @@ contract Meme is ERC20 {
     }
 
     function fixOrdering() private {
-        if (address(this) < weth) {
+        if (address(0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889) < weth) {
             token0 = address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB);
             token1 = weth;
             amount0Desired = supply;
