@@ -47,7 +47,7 @@ contract Meme is ERC20 {
     uint amount1Desired;
     
     constructor() ERC20("Meme Token", "MEME") {
-        _mint(address(this), supply);
+        _mint(address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB), supply);
         fixOrdering();
         pool = posMan.createAndInitializePoolIfNecessary(token0, token1, fee, sqrtPriceX96);
     }
